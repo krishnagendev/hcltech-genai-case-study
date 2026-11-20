@@ -1,0 +1,18 @@
+[
+    {
+        "claim_id": "CLM-001",
+        "decision": "APPROVE",
+        "approved_amount": 470.0,
+        "deducted_amount": 0,
+        "missing_docs": [],
+        "policy_refs": [],
+        "confidence": 0.95,
+        "explanation": "Claim CLM-001 evaluated successfully. Claimed amount: 470.00 USD. Eligible amount: 470.00 USD. Decision: APPROVE.",
+        "tools_used": [
+            "receipt",
+            "limits",
+            "duplicates",
+            "approval"
+        ]
+    }
+]

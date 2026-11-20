@@ -1,0 +1,26 @@
+[
+    {
+        "claim_id": "CLM-001",
+        "employee_id": "EMP-101",
+        "submission_date": "2026-11-15",
+        "trip_start_date": "2026-11-10",
+        "expenses": [
+            {
+                "category": "meals",
+                "amount": 120,
+                "days": 2,
+                "receipt_required": true,
+                "receipt_present": true,
+                "date": "2026-11-10"
+            },
+            {
+                "category": "lodging",
+                "amount": 350,
+                "nights": 2,
+                "receipt_required": true,
+                "receipt_present": true,
+                "date": "2026-11-10"
+            }
+        ]
+    }
+]

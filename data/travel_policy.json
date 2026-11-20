@@ -1,0 +1,20 @@
+[
+    {
+        "policy_id": "POL-PD-01",
+        "category": "meals",
+        "limit": 75,
+        "unit": "days"
+    },
+    {
+        "policy_id": "POL-PD-02",
+        "category": "lodging",
+        "limit": 200,
+        "unit": "nights"
+    },
+    {
+        "policy_id": "POL-PD-03",
+        "category": "ground_transport",
+        "limit": 50,
+        "unit": "days"
+    }
+]
