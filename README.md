@@ -1,34 +1,67 @@
 # Travel Reimbursement Approval Agent
+### Agentic AI-Based Expense Validation and Approval System
 
-## 1. Project Title
-Travel Reimbursement Approval Agent – Agentic AI-Based Expense Validation and Approval System.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Agentic AI](https://img.shields.io/badge/AI-Agentic%20AI-purple)
+![Jupyter](https://img.shields.io/badge/Environment-Jupyter%20Notebook-orange)
+![Status](https://img.shields.io/badge/Status-Working%20Prototype-success)
 
-## 2. Brief One Line Summary
-An AI-powered reimbursement approval system that automates employee travel expense validation using policy-based checks, intelligent tool orchestration, and human-in-the-loop review.
+## 1. Project Overview
 
-## 3. Overview
-The Travel Reimbursement Approval Agent is designed to automate the initial review of employee travel reimbursement claims.
+The **Travel Reimbursement Approval Agent** is a Python-based Agentic AI prototype designed to automate employee travel expense validation and reimbursement decisions.
 
-The system evaluates expense claims against company policies, checks supporting receipts, validates expense limits, identifies duplicate transactions, and determines the appropriate approval status.
+The system evaluates employee reimbursement claims against predefined company policies, validates supporting receipts, checks expense limits, detects potential duplicate transactions, and determines the appropriate approval status.
 
-It uses a Python-based agent orchestration workflow with deterministic business rules and optional LLM-based tool selection.
+It combines an agent orchestration workflow, specialized validation tools, deterministic business rules, and optional OpenAI Function Calling for intelligent tool selection.
 
-## 4. Problem Statement
-Manual travel reimbursement processing involves several time-consuming activities:
+The solution also supports human-in-the-loop review for exceptional, incomplete, or high-risk claims.
+
+## 2. Business Problem Statement
+
+Traditional travel reimbursement processing involves several manual activities:
 
 - Checking expense eligibility against company policies.
 - Validating receipts and supporting documents.
-- Verifying meal, lodging, and transportation limits.
-- Identifying duplicate expenses.
-- Checking submission deadlines.
-- Routing exceptional claims for manual approval.
+- Verifying meal, accommodation, and transportation limits.
+- Identifying duplicate expense transactions.
+- Checking reimbursement submission deadlines.
+- Routing exceptional or high-value claims for manual approval.
 
-The objective is to automate these activities, improve consistency, reduce manual effort, and provide transparent reimbursement decisions.
+These activities increase processing time and can result in inconsistent decisions and operational overhead.
 
-## 5. Dataset
-The project uses five sample employee reimbursement claims provided in the assignment.
+**Objective:** Build an automated reimbursement validation system that improves decision consistency, reduces manual effort, and provides transparent, policy-based reimbursement decisions.
 
-| Claim ID | Scenario |
+## 3. Solution Architecture and Agent Workflow
+
+The solution follows a modular, tool-based agent orchestration approach.
+
+### Workflow
+
+1. **Claim Intake:** Accept employee travel reimbursement claims.
+2. **Policy Lookup:** Retrieve applicable reimbursement policies and rules.
+3. **Receipt Validation:** Verify mandatory supporting documents.
+4. **Expense Validation:** Check eligible expense categories and reimbursement limits.
+5. **Timeliness Validation:** Verify compliance with the 30-day submission policy.
+6. **Duplicate Detection:** Identify potential duplicate expense entries.
+7. **Approval Threshold Validation:** Determine the applicable approval level.
+8. **Decision Engine:** Evaluate validation results and generate the reimbursement decision.
+9. **Output Validation:** Validate the structured JSON response.
+10. **Audit and Reporting:** Record tool execution results and generate dashboard visualizations.
+
+### Supported Decision Types
+
+| Decision | Description |
+|---|---|
+| APPROVE | All evaluated expenses satisfy applicable policies |
+| PARTIAL_APPROVE | Eligible expenses are approved while deductions are applied |
+| REJECT | The claim contains expenses that fail mandatory policy conditions |
+| MANUAL_REVIEW | The claim requires human verification or approval |
+
+## 4. Dataset and Test Scenarios
+
+The project uses five sample employee reimbursement claims provided as part of the assignment.
+
+| Claim ID | Business Scenario |
 |---|---|
 | CLM-001 | Industry conference travel |
 | CLM-002 | Weekend hotel stay |
@@ -36,97 +69,130 @@ The project uses five sample employee reimbursement claims provided in the assig
 | CLM-004 | International vendor negotiation |
 | CLM-005 | Client dinner / business development |
 
-The dataset contains employee information, business purpose, travel dates, expense categories, claimed amounts, and receipt availability.
+The sample dataset contains employee details, business purpose, travel dates, expense categories, claimed amounts, and receipt availability.
 
-A Python-based policy knowledge base stores the reimbursement rules and policy references.
+A Python-based policy knowledge base maintains reimbursement rules and policy references used during validation.
 
-## 6. Tools and Technologies
-- Python
-- Jupyter Notebook
-- OpenAI Function Calling (optional)
-- Pandas
-- Matplotlib
-- JSON
-- Rule-Based Decision Engine
-- Agent Orchestration
-- IPython
+## 5. Technology Stack
 
-## 7. Methods
-The project follows an agentic workflow:
+| Technology | Purpose |
+|---|---|
+| Python | Core application development |
+| Jupyter Notebook | Development and execution environment |
+| Pandas | Data processing and analysis |
+| Matplotlib | Dashboard and data visualization |
+| OpenAI Function Calling (Optional) | Intelligent tool selection |
+| JSON | Structured input and output |
+| Rule-Based Decision Engine | Deterministic policy validation |
+| Agent Orchestration | Coordinating validation tools |
+| IPython | Interactive notebook execution |
 
-1. Claim Intake – Accept employee reimbursement claims.
-2. Policy Lookup – Retrieve relevant company reimbursement policies.
-3. Receipt Validation – Check mandatory supporting documents.
-4. Expense Validation – Verify eligible categories and reimbursement limits.
-5. Timeliness Validation – Check the 30-day submission policy.
-6. Duplicate Detection – Identify repeated expense items.
-7. Approval Threshold Validation – Determine the applicable approval tier.
-8. Decision Engine – Generate the final reimbursement decision.
-9. Output Validation – Validate the structured JSON response.
-10. Audit and Reporting – Maintain tool execution results and generate a dashboard.
+## 6. Key Features
 
-The system supports four decisions:
+- Automated travel reimbursement claim evaluation.
+- Policy-based expense validation.
+- Receipt and supporting document verification.
+- Expense category and spending limit validation.
+- Submission deadline verification.
+- Potential duplicate expense detection.
+- Approval threshold evaluation.
+- Human-in-the-loop exception handling.
+- Structured JSON decision generation.
+- Agent tool execution audit trail.
+- Dashboard-based reimbursement reporting.
 
-- APPROVE
-- PARTIAL_APPROVE
-- REJECT
-- MANUAL_REVIEW
+## 7. Reimbursement Decision Results
 
-## 8. Key Insights
-- Automatically identifies eligible and ineligible expenses.
-- Detects missing mandatory receipts.
-- Calculates reimbursement amounts based on policy limits.
-- Identifies potential duplicate expense items.
-- Routes exceptional and high-value claims for manual review.
-- Maintains policy references for auditability.
-- Generates consistent structured JSON responses.
+The system evaluates all five sample reimbursement claims.
 
-## 9. Dashboard/Model/Output
-The project generates:
+| Claim ID | Decision | Key Finding |
+|---|---|---|
+| CLM-001 | APPROVE | Expenses comply with applicable reimbursement policies |
+| CLM-002 | REJECT | Contains ineligible spa and minibar expenses |
+| CLM-003 | PARTIAL_APPROVE | Lodging expense exceeds the permitted limit |
+| CLM-004 | MANUAL_REVIEW | Business-class airfare, missing receipt, and high-value claim |
+| CLM-005 | MANUAL_REVIEW | Mandatory meal receipt is missing |
 
-- Claim-wise reimbursement decision summary.
+These results demonstrate the system's ability to distinguish between eligible, partially eligible, rejected, and exceptional reimbursement claims.
+
+## 8. Dashboard and Output
+
+The application generates:
+
+- Claim-wise reimbursement decision summaries.
 - Approved and deducted amount calculations.
 - Missing document identification.
 - Policy reference tracking.
-- Agent tool execution audit trail.
-- Dashboard showing decision distribution and financial summaries.
-- Structured JSON output containing nine required fields.
+- Agent tool execution audit logs.
+- Dashboard visualizations of decision distribution and financial summaries.
 
-The output includes claim ID, decision, approved amount, deducted amount, missing documents, policy references, confidence, explanation, and tools used.
+### Structured JSON Output
 
-## 10. How to Run this project?
+The system produces a structured JSON response containing nine required fields:
 
-### Step 1: Install Python dependencies
+1. `claim_id`
+2. `decision`
+3. `approved_amount`
+4. `deducted_amount`
+5. `missing_documents`
+6. `policy_references`
+7. `confidence`
+8. `explanation`
+9. `tools_used`
+
+This structured output supports downstream integrations, reporting, auditability, and future enterprise workflow automation.
+
+## 9. Installation and Execution
+
+### Prerequisites
+
+- Python 3.x
+- Jupyter Notebook
+- Git (optional, for repository management)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/krishnagendev/hcltech-genai-case-study.git
+```
+
+### Step 2: Navigate to the Project Directory
+
+```bash
+cd hcltech-genai-case-study
+```
+
+### Step 3: Install Dependencies
 
 ```bash
 pip install notebook pandas matplotlib ipython
 ```
 
-### Step 2: Start Jupyter Notebook
+### Step 4: Launch Jupyter Notebook
 
 ```bash
 jupyter notebook
 ```
 
-### Step 3: Open the project
+### Step 5: Open the Project Notebook
 
 Open:
 
 `Travel_Reimbursement_Approval_Agent.ipynb`
 
-### Step 4: Execute the notebook
+### Step 6: Execute the Notebook
 
 Select:
 
-**Kernel → Restart & Run All**
+`Kernel → Restart & Run All`
 
 Alternatively, upload the notebook to Google Colab and select:
 
-**Runtime → Run all**
+`Runtime → Run all`
 
-### Step 5: View the results
+### Step 7: Review the Results
 
-The notebook will execute the complete workflow and display:
+After execution, review:
 
 - Reimbursement decisions.
 - Policy validation results.
@@ -142,49 +208,52 @@ Install the OpenAI SDK:
 pip install openai
 ```
 
-Configure your `OPENAI_API_KEY` environment variable before starting Jupyter.
+Configure the `OPENAI_API_KEY` environment variable before starting Jupyter Notebook.
 
-Without an API key, the project automatically uses its local rule-based tool planner.
+Without an API key, the application uses its local rule-based tool planner.
 
----
+**Security Note:** Never commit API keys, credentials, or `.env` files to the GitHub repository.
 
-**Project Status:** Working Python-based Agentic AI prototype.
+## 10. Technical Highlights
 
-**Future Enhancements:** LangGraph orchestration, Azure AI Document Intelligence, persistent audit storage, historical duplicate detection, and human-in-the-loop approval integration.
-## 11. Results & Conclusion
+The project demonstrates practical implementation of:
 
-### Results
-The Travel Reimbursement Approval Agent successfully evaluates all five sample reimbursement claims using automated policy validation and agent-based tool orchestration.
+- Python-based agent orchestration.
+- Tool-based execution and validation.
+- Deterministic business rule evaluation.
+- Policy-driven decision-making.
+- Structured JSON response generation.
+- Exception handling and human-in-the-loop routing.
+- Audit logging and reporting.
 
-The system demonstrates the following outcomes:
+The architecture separates business policy validation from tool orchestration, making the solution easier to maintain, test, and extend.
 
-- **CLM-001:** APPROVE – All expenses comply with reimbursement policies.
-- **CLM-002:** REJECT – Contains ineligible spa and minibar expenses.
-- **CLM-003:** PARTIAL_APPROVE – Lodging expense exceeds the permitted limit.
-- **CLM-004:** MANUAL_REVIEW – Business-class airfare, missing receipt, and high-value claim.
-- **CLM-005:** MANUAL_REVIEW – Required meal receipt is missing.
+## 11. Future Enhancements
 
-### Conclusion
-The project demonstrates how Agentic AI and Python-based automation can simplify employee travel reimbursement processing.
+The following enhancements can extend the current prototype toward production readiness:
 
-By combining policy lookup, multiple validation tools, deterministic decision-making, structured JSON output, and human-in-the-loop review, the solution provides a transparent and auditable reimbursement workflow.
+| Enhancement | Proposed Implementation |
+|---|---|
+| Stateful Agent Orchestration | LangGraph |
+| LLM Integration | Azure OpenAI |
+| Receipt Processing | Azure AI Document Intelligence |
+| Policy Retrieval | RAG with Azure AI Search |
+| Human-in-the-Loop | Manager approval workflow |
+| Persistent Storage | SQL Database / Azure Cosmos DB |
+| API Development | Python FastAPI |
+| Cloud Deployment | Microsoft Azure |
+| Monitoring | Application Insights and structured logging |
+| Evaluation | Agent execution and decision accuracy metrics |
 
-It also demonstrates the practical application of AI agents in enterprise business process automation.
+## 12. Conclusion
 
-## 12. Future Work
+The Travel Reimbursement Approval Agent demonstrates how Agentic AI concepts and Python-based automation can simplify enterprise travel reimbursement processing.
 
-The following enhancements can extend the current prototype:
+By combining policy lookup, specialized validation tools, deterministic decision-making, structured JSON responses, and human-in-the-loop review, the solution provides a transparent and auditable reimbursement workflow.
 
-- **LangGraph Integration:** Implement stateful agent orchestration, conditional routing, and workflow management.
-- **Azure OpenAI Integration:** Enable intelligent LLM-based reasoning and tool selection.
-- **Document Intelligence:** Integrate Azure AI Document Intelligence for automatic receipt extraction.
-- **RAG Integration:** Retrieve reimbursement policies using vector search and semantic retrieval.
-- **Human-in-the-Loop:** Implement manager approval and exception-handling workflows.
-- **Database Integration:** Store employee claims, reimbursement history, and audit records.
-- **Production Deployment:** Deploy the application using FastAPI and Azure cloud services.
-- **Monitoring & Evaluation:** Add execution tracking, logging, performance monitoring, and evaluation metrics.
+The project demonstrates the practical application of AI agents in enterprise business process automation, with a modular foundation for future integration with LLMs, RAG, LangGraph, and Azure AI services.
 
-## 13. Author & Contact
+## 13. Project Information
 
 **Author:** Krishna Kumar
 
@@ -196,8 +265,9 @@ The following enhancements can extend the current prototype:
 
 **Location:** Pune, India
 
-**GitHub:** Add your GitHub profile URL here.
+**GitHub Repository:**  
+https://github.com/krishnagendev/hcltech-genai-case-study
 
 ---
 
-*Developed as an AI Developer assignment demonstrating Agentic AI concepts, automated policy validation, and enterprise workflow automation.*# hcltech-genai-case-study
+*Developed as an AI Developer technical assignment to demonstrate Agentic AI concepts, automated policy validation, tool orchestration, and enterprise workflow automation.*
